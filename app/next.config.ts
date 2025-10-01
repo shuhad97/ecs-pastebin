@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  output: 'standalone',
+  generateBuildId: async () => null,
 };
 
 export default nextConfig;
