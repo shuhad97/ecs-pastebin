@@ -1,7 +1,8 @@
 name: 'Terraform Plan'
 
-on: 
-  push: [ main ]
+on:
+  push:
+    branches: [ main ]
 
 jobs:
   build:
