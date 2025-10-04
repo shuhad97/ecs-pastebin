@@ -26,21 +26,22 @@ variable "private_subnet_cidr_2" {
 variable "private_subnet_1_az" {
   description = "Availability zone for subnet 1"
   type        = string
-  default = "eu-west-2a"
+  default     = "eu-west-2a"
 }
 
 variable "private_subnet_2_az" {
   description = "Availability zone for subnet 2"
   type        = string
-  default = "eu-west-2b"
+  default     = "eu-west-2b"
 }
 
 variable "public_route_table_cidr" {
-   description = "Route table CIDR"
-   type        = string
+  description = "Route table CIDR"
+  type        = string
+  default     = "0.0.0.0/0"
 }
 
 variable "project_name" {
-  type        = string
-  default     = "ecs-pastebin"
+  type    = string
+  default = "ecs-pastebin"
 }
