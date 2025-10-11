@@ -11,7 +11,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_all_traffic" {
 }
 
 resource "aws_vpc_security_group_egress_rule" "allow_alb_outbound_ecs" {
-  security_group_id = aws_security_group.alb_sg
+  security_group_id = aws_security_group.alb_sg.id
   referenced_security_group_id = var.ecs_sg_id
   ip_protocol = "tcp"
   from_port = 3000
