@@ -11,7 +11,8 @@ resource "aws_vpc_security_group_ingress_rule" "allow_all_traffic" {
 }
 
 resource "aws_vpc_security_group_egress_rule" "allow_alb_outbound_ecs" {
-  security_group_id = var.ecs_sg_id
+  security_group_id = aws_security_group.alb_sg
+  referenced_security_group_id = var.ecs_sg_id
   ip_protocol = "tcp"
   from_port = 3000
   to_port = 3000
@@ -44,9 +45,9 @@ resource "aws_lb" "app_load_balancer" {
   subnets            =  [var.public_subnet_id]
 
 
-  access_logs {
-    bucket  = aws_s3_bucket.lb_logs.id
-    prefix  = "test-lb"
-    enabled = true
-  }
+  # access_logs {
+  #   bucket  = aws_s3_bucket.lb_logs.id
+  #   prefix  = "test-lb"
+  #   enabled = true
+  # }
 }
