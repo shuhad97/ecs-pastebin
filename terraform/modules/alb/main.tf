@@ -33,7 +33,7 @@ resource "aws_lb_listener" "ecs_lb_listener" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.ip-pastebin.arn
+    target_group_arn = aws_lb_target_group.ip_pastebin_tg.arn
   }
 }
 

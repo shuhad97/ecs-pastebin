@@ -3,5 +3,5 @@ output "alb_id" {
 }
 
 output "ecs_target_group_arn" {
-    value = aws_lb_target_group.ip-pastebin.arn
+    value = aws_lb_target_group.ip_pastebin_tg.arn
 }
