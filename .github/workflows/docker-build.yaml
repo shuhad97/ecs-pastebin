@@ -18,7 +18,9 @@ jobs:
         password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       env:
         AWS_REGION: ${{ vars.AWS_REGION }}
-
+    
+    - name: checkout code
+      uses: actions/checkout@v5
 
     - name: Set up Docker BuildX
       uses: docker/setup-buildx-action@v3
