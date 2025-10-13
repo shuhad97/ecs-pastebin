@@ -4,7 +4,6 @@ resource "aws_security_group" "ecs_sg" {
   vpc_id = var.vpc_id
 }
 
-
 resource "aws_ecs_cluster" "ecs_cluster" {
     name = "pastebin-cluster"
 
@@ -14,7 +13,6 @@ resource "aws_ecs_cluster" "ecs_cluster" {
   }
   
 }
-
 
 resource "aws_ecs_service" "pastebin_service" {
     name = "pastebin-service"
@@ -27,4 +25,23 @@ resource "aws_ecs_service" "pastebin_service" {
       container_port = 3000
     }
 
+}
+
+resource "aws_ecs_task_definition" "app_ervice" {
+  family = "service"
+  container_definitions = jsonencode([
+    {
+      name      = "pastebin-definition"
+      image     = "service-first"
+      cpu       = 1024
+      memory    = 512
+      essential = true
+      portMappings = [
+        {
+          containerPort = 3000
+          hostPort      = 3000
+        }
+      ]
+    }
+  ])
 }

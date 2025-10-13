@@ -1,3 +1,10 @@
+name: 'Docker Build'
+
+on:
+  push:
+    branches: [ main ]
+
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,5 +26,6 @@ jobs:
     - name: build and push
       uses: docker/build-push-action@v6
       with:
+        context: ./app
         push: true
-        tags: ${{ vars.ECR_URL }}/pastebin:latest
+        tags: ${{ vars.ECR_URL }}/pastebin:${{ github.sha }}

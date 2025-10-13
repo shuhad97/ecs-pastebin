@@ -18,7 +18,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_alb_outbound_ecs" {
   to_port = 3000
 }
 
-resource "aws_lb_target_group" "ip-pastebin" {
+resource "aws_lb_target_group" "ip_pastebin_tg" {
   name        = "pastebin-lb-tg"
   port        = 3000
   protocol    = "HTTP"
@@ -26,7 +26,7 @@ resource "aws_lb_target_group" "ip-pastebin" {
   vpc_id      = var.vpc_id
 }
 
-resource "aws_lb_listener" "front_end" {
+resource "aws_lb_listener" "ecs_lb_listener" {
   load_balancer_arn = aws_lb.app_load_balancer.arn
   port              = "3000"
   protocol          = "HTTPS"
