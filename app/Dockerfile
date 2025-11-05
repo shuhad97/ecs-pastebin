@@ -5,12 +5,12 @@ WORKDIR /app
 COPY . .
 
 ENV DATABASE_URL=$DATABASE_URL
-ENV ADMIN_PASSWORD=""
+ENV PORT=80
 
 RUN npm install
 
 RUN npm run build
 
-EXPOSE 3000
+EXPOSE 80
 
 CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
