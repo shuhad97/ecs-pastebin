@@ -1,49 +1,21 @@
-'use client';
+import { Code2 } from "lucide-react";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { ThemeToggle } from '@/components/theme-toggle';
-
-export function Header() {
-  const pathname = usePathname();
-  
+export const Header = () => {
   return (
-    <header className="border-b border-border">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold">
-          PasteBin
-        </Link>
-        
-        <div className="flex items-center gap-6">
-          <nav className="flex items-center gap-6">
-            <Link
-              href="/create"
-              className={`hover:text-foreground/80 transition-colors ${
-                pathname === '/create' ? 'text-foreground' : 'text-foreground/60'
-              }`}
-            >
-              Create
-            </Link>
-            <Link
-              href="/recent"
-              className={`hover:text-foreground/80 transition-colors ${
-                pathname === '/recent' ? 'text-foreground' : 'text-foreground/60'
-              }`}
-            >
-              Recent
-            </Link>
-            <Link
-              href="/files"
-              className={`hover:text-foreground/80 transition-colors ${
-                pathname === '/files' ? 'text-foreground' : 'text-foreground/60'
-              }`}
-            >
-              Files
-            </Link>
-          </nav>
-          <ThemeToggle />
+    <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-gradient-primary rounded-lg">
+            <Code2 className="w-6 h-6 text-primary-foreground" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              CodeShare
+            </h1>
+            <p className="text-sm text-muted-foreground">Share code instantly</p>
+          </div>
         </div>
       </div>
     </header>
   );
-} 
+};
