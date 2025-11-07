@@ -5,8 +5,9 @@ module "network" {
 module "alb" {
     source = "./modules/alb"
     vpc_id = module.network.vpc_id
-    public_subnet_id = module.network.public_subnet_id
-    ecs_sg_id = module.ecs.ecs_sg_id
+    public_subnet_1_id = module.network.public_subnet_id_1
+    public_subnet_2_id = module.network.public_subnet_id_2
+    # ecs_sg_id = module.ecs.ecs_sg_id
 }
 
 module "ecs" {

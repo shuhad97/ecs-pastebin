@@ -3,12 +3,17 @@ variable "vpc_id"{
     type = string
 }
 
-variable "public_subnet_id" {
-    description = "Public subnet ID"
+variable "public_subnet_1_id" {
+    description = "Public subnet ID 1"
     type = string
 }
 
-variable "ecs_sg_id" {
-  description = "ECS Security group ID"
-  type = string
+variable "public_subnet_2_id" {
+    description = "Public subnet ID 2"
+    type = string
 }
+
+# variable "ecs_sg_id" {
+#   description = "ECS Security group ID"
+#   type = string
+# }
