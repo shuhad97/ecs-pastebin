@@ -74,3 +74,56 @@ resource "aws_route_table_association" "public_assoc_2" {
     subnet_id = aws_subnet.public_subnet_2.id
     route_table_id = aws_route_table.public_route_table.id
 }
+
+resource "aws_nat_gateway" "ngw_private_subnet_1" {
+    subnet_id = aws_subnet.public_subnet_1.id
+    allocation_id = aws_eip.ngw_private_1.allocation_id
+
+    depends_on = [ aws_internet_gateway.igw ]
+}
+
+resource "aws_nat_gateway" "ngw_private_subnet_2" {
+    subnet_id = aws_subnet.public_subnet_2.id
+    allocation_id = aws_eip.ngw_private_2.allocation_id
+
+    depends_on = [ aws_internet_gateway.igw ]
+
+}
+
+resource "aws_eip" "ngw_private_1" {
+  domain   = "vpc"
+}
+
+resource "aws_eip" "ngw_private_2" {
+  domain   = "vpc"
+}
+
+resource "aws_route_table" "private_route_table_1" {
+    vpc_id = aws_vpc.vpc.id
+
+    route {
+        cidr_block = var.public_route_table_cidr
+        nat_gateway_id = aws_nat_gateway.ngw_private_subnet_1.id
+    }
+  
+}
+
+resource "aws_route_table" "private_route_table_2" {
+    vpc_id = aws_vpc.vpc.id
+
+    route {
+        cidr_block = var.public_route_table_cidr
+        nat_gateway_id = aws_nat_gateway.ngw_private_subnet_2.id
+    }
+  
+}
+
+resource "aws_route_table_association" "private_assoc_1" {
+    subnet_id = aws_subnet.private_subnet_1.id
+    route_table_id = aws_route_table.private_route_table_1.id
+}
+
+resource "aws_route_table_association" "private_assoc_2" {
+    subnet_id = aws_subnet.private_subnet_2.id
+    route_table_id = aws_route_table.private_route_table_2.id
+}
