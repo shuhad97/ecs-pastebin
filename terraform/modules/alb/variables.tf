@@ -13,7 +13,7 @@ variable "public_subnet_2_id" {
     type = string
 }
 
-# variable "ecs_sg_id" {
-#   description = "ECS Security group ID"
-#   type = string
-# }
+variable "ecs_sg_id" {
+  description = "ECS Security group ID"
+  type = string
+}
