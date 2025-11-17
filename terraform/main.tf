@@ -18,4 +18,10 @@ module "ecs" {
     private_subnet_1_id = module.network.private_subnet_id_1
     private_subnet_2_id = module.network.private_subnet_id_2
 
-} 
+}
+
+module "route54" {
+  source = "./modules/route53"
+  alb_dns_name = module.alb.alb_dns_name
+  alb_zone_id = module.alb.alb_zone_id
+}
