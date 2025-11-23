@@ -8,6 +8,7 @@ module "alb" {
     public_subnet_1_id = module.network.public_subnet_id_1
     public_subnet_2_id = module.network.public_subnet_id_2
     ecs_sg_id = module.ecs.ecs_sg_id
+    aws_acm_certificate_validation_arn = module.acm.aws_acm_certificate_validation_arn
 }
 
 module "ecs" {
@@ -20,8 +21,13 @@ module "ecs" {
 
 }
 
-module "route54" {
+module "route53" {
   source = "./modules/route53"
   alb_dns_name = module.alb.alb_dns_name
   alb_zone_id = module.alb.alb_zone_id
+  domain_validation_options = module.acm.domain_validation
+}
+
+module "acm" {
+  source = "./modules/acm"
 }

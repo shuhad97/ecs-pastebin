@@ -17,3 +17,8 @@ variable "ecs_sg_id" {
   description = "ECS Security group ID"
   type = string
 }
+
+variable "aws_acm_certificate_validation_arn" {
+    description = "Certificate validation ARN"
+    type = string
+}

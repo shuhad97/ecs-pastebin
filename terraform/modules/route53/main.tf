@@ -13,3 +13,11 @@ resource "aws_route53_record" "main-ns" {
   }
 }
 
+resource "aws_route53_record" "dns_validation" {
+  zone_id = aws_route53_zone.main.zone_id
+  
+  name = var.domain_validation_options[0].resource_record_name 
+  type = var.domain_validation_options[0].resource_record_type
+  records = [ var.domain_validation_options[0].resource_record_value]
+  ttl = 300
+}

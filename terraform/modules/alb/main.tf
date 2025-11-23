@@ -28,6 +28,14 @@ resource "aws_vpc_security_group_ingress_rule" "alb_internet" {
   to_port = 80
 }
 
+resource "aws_vpc_security_group_ingress_rule" "alb_internet_https" {
+  security_group_id = aws_security_group.alb_sg.id
+  ip_protocol = "tcp"
+  cidr_ipv4 = "0.0.0.0/0"
+  from_port = 443
+  to_port = 443
+}
+
 resource "aws_lb_target_group" "pastebin_tg" {
   name        = "pastebin-lb-tg"
   port        = 80
@@ -41,6 +49,18 @@ resource "aws_lb_listener" "ecs_lb_listener" {
   load_balancer_arn = aws_lb.app_load_balancer.arn
   port              = "80"
   protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.pastebin_tg.arn
+  }
+}
+
+resource "aws_lb_listener" "ecs_lb_listiner_https" {
+  load_balancer_arn = aws_lb.app_load_balancer.arn
+  port              = "443"
+  protocol          = "HTTPS"
+  certificate_arn = var.aws_acm_certificate_validation_arn
 
   default_action {
     type             = "forward"
