@@ -34,10 +34,9 @@ jobs:
     
     - name: Upload plan
       uses: actions/upload-artifact@v4
-      working-directory: ./terraform
       with:
         name: tfplan-artifact
-        path: tfplan
+        path: ./terraform/tfplan
 
 
       
