@@ -29,3 +29,15 @@ variable "image_tag" {
     type = string
     default = "latest"
 }
+
+variable "ecr_url" {
+  description = "URL for ECR"
+  type = string
+  default = "559494320357.dkr.ecr.eu-west-2.amazonaws.com"
+}
+
+variable "ecr_repository" {
+    description = "ECR Respository name"
+    type = string
+    default = "pastebin"
+}
