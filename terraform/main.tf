@@ -18,6 +18,9 @@ module "ecs" {
     pastebin_tg_arn = module.alb.pastebin_tg_arn
     private_subnet_1_id = module.network.private_subnet_id_1
     private_subnet_2_id = module.network.private_subnet_id_2
+    image_tag = var.image_tag
+    ecr_url = var.ecr_url
+    ecr_repository = var.ecr_repository
 
 }
 
