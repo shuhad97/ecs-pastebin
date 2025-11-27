@@ -10,11 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      TF_VAR_image_tag: ${{ github.sha }} 
-      TF_VAR_ecr_url:  ${{ vars.ECR_URL }}
-      TF_VAR_ecr_repository: ${{ vars.ECR_REPOSITORY }}
-
     steps:
     - name: checkout code
       uses: actions/checkout@v5
@@ -34,6 +29,10 @@ jobs:
       run: terraform init
 
     - name: Terraform Plan
+      env:
+      TF_VAR_image_tag: ${{ github.sha }} 
+      TF_VAR_ecr_url:  ${{ vars.ECR_URL }}
+      TF_VAR_ecr_repository: ${{ vars.ECR_REPOSITORY }}
       working-directory: ./terraform
       run: terraform plan -out=tfplan
     
