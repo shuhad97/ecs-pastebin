@@ -31,4 +31,4 @@ jobs:
       with:
         context: ./app
         push: true
-        tags: ${{ vars.ECR_URL }}/pastebin:${{ github.sha }}
+        tags: ${{ vars.ECR_URL }}/${{ vars.ECR_REPOSITORY }}:${{ github.sha }}

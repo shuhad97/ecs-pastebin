@@ -10,6 +10,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      TF_VAR_image_tag: ${{ github.sha }} 
+      TF_VAR_ecr_url:  ${{ vars.ECR_URL }}
+      TF_VAR_ecr_repository: ${{ vars.ECR_REPOSITORY }}
+
     steps:
     - name: checkout code
       uses: actions/checkout@v5

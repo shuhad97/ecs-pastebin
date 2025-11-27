@@ -70,7 +70,7 @@ resource "aws_ecs_task_definition" "app_task_definition" {
   container_definitions = jsonencode([
     {
       name      = "pastebin-container"
-      image     = "559494320357.dkr.ecr.eu-west-2.amazonaws.com/pastebin:dd3beea8a18b955a0050fa6cb59171ae0275b104"
+      image     = var.image_tag
       essential = true
       portMappings = [
         {
