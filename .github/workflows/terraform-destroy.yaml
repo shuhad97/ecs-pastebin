@@ -29,5 +29,7 @@ jobs:
         TF_VAR_image_tag: ${{ github.sha }} 
         TF_VAR_ecr_url:  ${{ vars.ECR_URL }}
         TF_VAR_ecr_repository: ${{ vars.ECR_REPOSITORY }}
+        TF_VAR_domain_name: ${{ vars.DOMAIN_NAME }}
+        TF_VAR_sub_domain_name: ${{ vars.SUB_DOMAIN_NAME }}
       working-directory: ./terraform
       run: terraform destroy -auto-approve
