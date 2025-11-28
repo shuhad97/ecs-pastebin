@@ -25,5 +25,9 @@ jobs:
       run: terraform init
 
     - name: Terraform Destroy
+      env:
+        TF_VAR_image_tag: ${{ github.sha }} 
+        TF_VAR_ecr_url:  ${{ vars.ECR_URL }}
+        TF_VAR_ecr_repository: ${{ vars.ECR_REPOSITORY }}
       working-directory: ./terraform
       run: terraform destroy -auto-approve
