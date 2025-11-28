@@ -1,3 +1,13 @@
+variable "domain_name" {
+    description = "Domain name for hosted zone"
+    type = string
+}
+
+variable "sub_domain_name" {
+    description = "Sub domain name for records"
+    type = string
+}
+
 variable "alb_dns_name"{
     description = "DNS name for ALB"
     type = string

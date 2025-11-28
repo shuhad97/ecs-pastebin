@@ -1,10 +1,10 @@
 resource "aws_route53_zone" "main" {
-  name = "weholidays.co.uk"
+  name = var.domain_name
 }
 
 resource "aws_route53_record" "main-ns" {
   zone_id = aws_route53_zone.main.zone_id
-  name    = "pastebin.weholidays.co.uk"
+  name    = var.sub_domain_name
   type    = "A"
   alias {
     name = var.alb_dns_name

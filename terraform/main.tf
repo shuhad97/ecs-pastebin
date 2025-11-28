@@ -29,8 +29,11 @@ module "route53" {
   alb_dns_name = module.alb.alb_dns_name
   alb_zone_id = module.alb.alb_zone_id
   domain_validation_options = module.acm.domain_validation
+  domain_name = var.domain_name
+  sub_domain_name = var.sub_domain_name
 }
 
 module "acm" {
   source = "./modules/acm"
+  sub_domain_name = var.sub_domain_name
 }

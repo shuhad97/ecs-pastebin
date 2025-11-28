@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "cert" {
-  domain_name       = "pastebin.weholidays.co.uk"
+  domain_name       = var.sub_domain_name
   validation_method = "DNS"
 
   lifecycle {
