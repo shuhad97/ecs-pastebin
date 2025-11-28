@@ -1,7 +1,7 @@
 variable "image_tag" {
     description = "Image tag/location from pipeline"
     type = string
-    }
+}
 
 variable "ecr_url" {
   description = "URL for ECR"
