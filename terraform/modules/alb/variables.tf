@@ -22,3 +22,8 @@ variable "aws_acm_certificate_validation_arn" {
     description = "Certificate validation ARN"
     type = string
 }
+
+variable "s3_id" {
+    description = "ID for S3 Log bucket"
+    type = string
+}

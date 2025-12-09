@@ -9,6 +9,7 @@ module "alb" {
     public_subnet_2_id = module.network.public_subnet_id_2
     ecs_sg_id = module.ecs.ecs_sg_id
     aws_acm_certificate_validation_arn = module.acm.aws_acm_certificate_validation_arn
+    s3_id = module.s3.s3_bucket_id
 }
 
 module "ecs" {
@@ -36,4 +37,8 @@ module "route53" {
 module "acm" {
   source = "./modules/acm"
   sub_domain_name = var.sub_domain_name
+}
+
+module "s3" {
+  source = "./modules/s3"
 }

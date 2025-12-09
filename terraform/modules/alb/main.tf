@@ -75,9 +75,8 @@ resource "aws_lb" "app_load_balancer" {
   security_groups    = [aws_security_group.alb_sg.id]
   subnets            =  [var.public_subnet_1_id, var.public_subnet_2_id]
 
-  # access_logs {
-  #   bucket  = aws_s3_bucket.lb_logs.id
-  #   prefix  = "test-lb"
-  #   enabled = true
-  # }
+  access_logs {
+    bucket  = var.s3_id
+    enabled = true
+  }
 }

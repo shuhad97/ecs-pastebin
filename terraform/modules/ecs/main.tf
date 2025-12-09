@@ -46,7 +46,7 @@ resource "aws_ecs_service" "pastebin_service" {
     launch_type = "FARGATE"
     task_definition = aws_ecs_task_definition.app_task_definition.arn
     cluster = aws_ecs_cluster.ecs_cluster.id
-    desired_count = 1
+    desired_count = 2
     load_balancer {
       target_group_arn = var.pastebin_tg_arn
       container_name = "pastebin-container"
