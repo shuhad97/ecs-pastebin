@@ -30,6 +30,24 @@ data "aws_iam_role" "ecs_task_execution_role" {
   name = "ecsTaskExecutionRole"
 }
 
+resource "aws_iam_role_policy" "ecs_create_logs" {
+  name = "CloudWatchLogsCreateGroup"
+  role = data.aws_iam_role.ecs_task_execution_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Action = [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ]
+      Resource = "arn:aws:logs:eu-west-2:*:log-group:/ecs/pastebin/*:*"
+    }]
+  })  
+}
+
 resource "aws_ecs_cluster" "ecs_cluster" {
     name = "pastebin-cluster"
 
@@ -47,10 +65,25 @@ resource "aws_ecs_service" "pastebin_service" {
     task_definition = aws_ecs_task_definition.app_task_definition.arn
     cluster = aws_ecs_cluster.ecs_cluster.id
     desired_count = 2
+
     load_balancer {
       target_group_arn = var.pastebin_tg_arn
       container_name = "pastebin-container"
       container_port = 80
+    }
+
+    service_connect_configuration {
+      enabled = true
+      log_configuration {
+        log_driver = "awslogs" 
+        options ={
+          aws-create-group = "true"
+          awslogs-region = "eu-west-2"
+          awslogs-group = "/ecs/pastebin"
+          awslogs-stream-prefix = "app"
+        }
+      }
+    
     }
 
     network_configuration {
@@ -67,6 +100,7 @@ resource "aws_ecs_task_definition" "app_task_definition" {
   cpu = 1024
   memory = 3072
   execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn
+
   container_definitions = jsonencode([
     {
       name      = "pastebin-container"
@@ -80,4 +114,5 @@ resource "aws_ecs_task_definition" "app_task_definition" {
       ]
     }
   ])
+  
 }
