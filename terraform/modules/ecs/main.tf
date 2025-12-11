@@ -43,7 +43,7 @@ resource "aws_iam_role_policy" "ecs_create_logs" {
         "logs:CreateLogStream",
         "logs:PutLogEvents"
       ]
-      Resource = "arn:aws:logs:eu-west-2:*:log-group:/ecs/pastebin/*:*"
+    "Resource": "arn:aws:logs:eu-west-2:*:log-group:/ecs/pastebin:*"
     }]
   })  
 }
