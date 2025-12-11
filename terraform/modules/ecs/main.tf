@@ -94,7 +94,7 @@ resource "aws_ecs_task_definition" "app_task_definition" {
       logConfiguration = {
       LogDriver = "awslogs" 
           options ={
-            aws-create-group = "true"
+            awslogs-create-group = "true"
             awslogs-region = "eu-west-2"
             awslogs-group = "/ecs/pastebin"
             awslogs-stream-prefix = "app"
