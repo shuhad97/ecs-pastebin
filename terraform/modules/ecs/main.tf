@@ -72,10 +72,6 @@ resource "aws_ecs_service" "pastebin_service" {
       container_port = 80
     }
 
-    service_connect_configuration {
-      enabled = true
-    }
-
     network_configuration {
       subnets = [var.private_subnet_1_id, var.private_subnet_2_id]
       security_groups = [ aws_security_group.ecs_sg.id ]
