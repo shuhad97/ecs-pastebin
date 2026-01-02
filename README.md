@@ -40,16 +40,28 @@ The goal of the project is to deploy a code sharing application using AWS with a
 ```
 
 
-## Archicture overview
+## Architecture overview
+
+
+<img width="1000" height="800" alt="latest drawio" src="https://github.com/user-attachments/assets/e1427e43-2837-43ff-9f87-a52653f33e4f" />
 
 
 
-
-
-
-
-### Traffic flow 
+## Traffic flow 
 ```
 User → Cloudflare → Route 53 → Internet gateway (IGW) → Application Load Balancer (ALB) → Elastic Contianer Service (ECS)
 ```
+
+
+## Demo video of app deployed live 
+Excuse the domain name I had plans with it :D
+
+
+
+https://github.com/user-attachments/assets/d0e6de77-ce94-43f3-b3c8-6184a58cd1e9
+
+
+
+
+
 
