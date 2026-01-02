@@ -7,6 +7,7 @@ The goal of the project is to deploy a code sharing application using AWS with a
 - Containerised application using Docker, multi-stage build, making Docker image lightweight and running with non root user
 - Utilised AWS ECS Fargate to deploy the container
 - Automated infrastrcuture via Terraform, using modular comopnents such as: VPC, ECS, ALB, S3, Route53 and ACM.
+- HTTPS enabled in ALB with certificates via ACM
 - S3 Native locking for Terraform
 - Utilised Terraform state lock using S3 native locking.
 - Multi-AZ ECS deployment
